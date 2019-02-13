@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <title>Django Polls blog</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"type ="text/css">
+
+    </head>
+    <body>
+      <div class ="container">
+      <h1>List of Question</h1>
+      <h1>List of Question</h1>
+      </div>
+{% if latest_question_list %}
+
+    <ul>
+
+    {% for question in latest_question_list %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    #using standerd url with namespacing facility for diffrent apps.
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<div class ="container">
+  {% if choicelist %}
+
+      <ul>
+
+      {% for choiceList in choicelist %}
+          <li><a href="/polls/{{ choiceList.id }}/">{{ choiceList.choice_text }}</a></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No selection are available.</p>
+  {% endif %}
+  </div>
+</body>
+</html>
